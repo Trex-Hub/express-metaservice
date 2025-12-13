@@ -29,8 +29,10 @@
   "dependencies": {
     "@types/cors": "^2.8.18",
     "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "winston": "^3.19.0",
     "zod": "^3.24.4"
   }
 }
