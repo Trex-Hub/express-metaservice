@@ -27,7 +27,9 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@types/config": "^3.3.5",
     "@types/cors": "^2.8.18",
+    "config": "^4.1.1",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",

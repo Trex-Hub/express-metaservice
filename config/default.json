@@ -1,0 +1,9 @@
+{
+  "port": 1337,
+  "allowedOrigins": ["http://localhost:3000"],
+  "allowedMethods": ["GET", "POST", "OPTIONS"],
+  "isDevelopment": true,
+  "timestampFormat": "YYYY-MM-DDTHH:mm:ss.SSSZ",
+  "logLevel": "info",
+  "isMicroservice": false
+}

@@ -1,12 +1,8 @@
-// DOTENV
-import { config } from 'dotenv';
 // DATE-FNS
 import { formatISO } from 'date-fns';
+// CONFIG
+import { getConfig } from '@/utils/helpers';
 
-config();
-
-export const PORT = process.env.PORT || 1337;
-
+export const PORT = getConfig<number>('port');
 export const TIMESTAMP = formatISO(new Date());
-
-export const IS_DEVELOPMENT = process.env.NODE_ENV === 'development' ? false : true;
+export const IS_DEVELOPMENT = getConfig<boolean>('isDevelopment');

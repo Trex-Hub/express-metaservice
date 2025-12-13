@@ -2,8 +2,8 @@
 import type { Request, Response, NextFunction } from 'express';
 // LOGGER
 import { logger } from '@/utils/logger';
-// CONSTANT
-import { IS_DEVELOPMENT } from '@/utils/constants';
+// CONFIG
+import { getConfig } from '@/utils/helpers';
 
 const loggingMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const start = process.hrtime.bigint();
@@ -14,7 +14,7 @@ const loggingMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const logLevel =
       res.statusCode >= 500 ? 'error' : res.statusCode >= 400 ? 'warn' : 'info';
 
-    if (IS_DEVELOPMENT) {
+    if (getConfig<boolean>('isDevelopment')) {
       logger.log({
         level: logLevel,
         message: 'HTTP request',

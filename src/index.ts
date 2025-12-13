@@ -1,8 +1,8 @@
 // UTILS
 import cors from 'cors';
 import express from 'express';
-// CONSTANTS
-import { PORT } from '@/utils/constants';
+// CONFIG
+import { getConfig } from '@/utils/helpers';
 // LOGGERS
 import { logger } from '@/utils/logger';
 // ROUTES
@@ -11,14 +11,15 @@ import router from '@/routes';
 import loggingMiddleware from '@/middlewares/logging';
 
 const app = express();
+
 app.use(express.json());
 
 app.use(loggingMiddleware);
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || '',
-    methods: ['GET', 'POST', 'OPTIONS'],
+    origin: getConfig('allowedOrigins'),
+    methods: getConfig('allowedMethods'),
   })
 );
 
@@ -26,9 +27,13 @@ app.get('/', (_req, res) => {
   res.status(200).send('OK');
 });
 
-app.use('/api/v1', router);
+if (getConfig('isMicroservice')) {
+  app.use(`/${getConfig('microserviceName')}`, router);
+} else {
+  app.use('/api/v1', router);
+}
 
-app.listen(PORT, () => {
-  logger.info(`Server is running on port ${PORT}`);
-  logger.info(`Server URL: http://localhost:${PORT}`);
+app.listen(getConfig('port'), () => {
+  logger.info(`Server is running on port ${getConfig('port')}`);
+  logger.info(`Server URL: http://localhost:${getConfig('port')}`);
 });
