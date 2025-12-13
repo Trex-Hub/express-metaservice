@@ -1,1 +1,29 @@
-npx --no -- commitlint --edit $1
+# Get the commit message
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Run commitlint validation
+npx --no -- commitlint --edit "$1"
+
+# If commitlint passed, check for duplicate consecutive commits
+if [ $? -eq 0 ]; then
+  # Get the last commit message (if it exists)
+  last_commit=$(git log -1 --pretty=%B 2>/dev/null)
+  
+  # Only check for duplicates if there's a previous commit
+  if [ -n "$last_commit" ]; then
+    # Compare with current commit message (trimmed)
+    commit_msg_trimmed=$(echo "$commit_msg" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    last_commit_trimmed=$(echo "$last_commit" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    
+    if [ "$last_commit_trimmed" = "$commit_msg_trimmed" ]; then
+      echo ""
+      echo "❌ ERROR: Duplicate commit message detected!"
+      echo "This commit message is identical to the previous commit:"
+      echo "  '$commit_msg_trimmed'"
+      echo ""
+      echo "Please use a different, more descriptive message."
+      exit 1
+    fi
+  fi
+fi
