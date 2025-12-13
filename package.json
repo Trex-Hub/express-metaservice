@@ -21,6 +21,7 @@
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/types": "^20.2.0",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.18",
     "husky": "^9.1.7",

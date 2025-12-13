@@ -60,6 +60,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^20.2.0
         version: 20.2.0
+      '@commitlint/types':
+        specifier: ^20.2.0
+        version: 20.2.0
       '@types/express':
         specifier: ^5.0.2
         version: 5.0.2
