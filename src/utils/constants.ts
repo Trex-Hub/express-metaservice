@@ -15,4 +15,6 @@ export const DATABASE_URL = getConfig<string>('databaseUrl');
 
 // GCP STORAGE
 export const GCP_STORAGE_PROJECT_ID = getConfig<string>('gcpStorageProjectId');
-export const GCP_STORAGE_BUCKET_NAME = getConfig<string>('gcpStorageBucketName');
+export const GCP_STORAGE_BUCKET_NAME = getConfig<string>(
+  'gcpStorageBucketName'
+);

@@ -13,8 +13,5 @@ const format = IS_DEVELOPMENT
 export const logger = winston.createLogger({
   level: 'info',
   format,
-  
-  transports: [
-    new winston.transports.Console(),
-  ],
+  transports: [new winston.transports.Console()],
 });

@@ -10,15 +10,20 @@
     "start": "node build/index.js",
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --check '**/*.{ts,js}'",
-    "prettier:fix": "prettier --write '**/*.{ts,js}'"
+    "prettier:fix": "prettier --write '**/*.{ts,js}'",
+    "prepare": "husky",
+    "pre-commit": "pnpm prettier && pnpm typecheck && pnpm build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.18",
+    "husky": "^9.1.7",
     "nodemon": "^3.1.10",
     "prettier": "3.5.3",
     "ts-node": "^10.9.2",
