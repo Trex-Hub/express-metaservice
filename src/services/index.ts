@@ -1,5 +1,5 @@
 // LOGGER
-import logger from '@/utils/logger';
+import { logger } from '@/utils/logger';
 
 interface FetchState<T> {
   data: T | null;

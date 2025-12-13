@@ -5,5 +5,12 @@
   "isDevelopment": true,
   "timestampFormat": "YYYY-MM-DDTHH:mm:ss.SSSZ",
   "logLevel": "info",
-  "isMicroservice": false
+  "isMicroservice": false,
+  "redisEnabled": true,
+  "redisUrl": "redis://localhost:6379/0",
+  "postgresEnabled": false,
+  "databaseUrl": "postgresql://postgres:postgres@localhost:5432/mydb",
+  "gcpStorageEnabled": false,
+  "gcpStorageProjectId": "",
+  "gcpStorageBucketName": ""
 }

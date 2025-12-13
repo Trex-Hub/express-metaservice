@@ -1,8 +1,8 @@
 // CONFIG
 import config from 'config';
 // TYPES
-import { CONFIG } from '@/types';
+import { Config } from '@/types';
 
-export function getConfig<T>(key: keyof CONFIG): T {
-  return config.get<T>(key);
+export function getConfig<T>(key: keyof Config): T {
+  return config.get<T>(key as string);
 }
