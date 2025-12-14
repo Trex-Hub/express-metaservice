@@ -21,6 +21,19 @@ const postgres = () => {
   return undefined;
 };
 
+export const shutdownPostgres = async (): Promise<void> => {
+  try {
+    const postgresClient = postgres();
+    if (postgresClient) {
+      await postgresClient.end();
+      logger.info('PostgreSQL connection pool closed');
+    }
+  } catch (error) {
+    logger.error('Error closing PostgreSQL connection:', error);
+    throw error;
+  }
+};
+
 export default postgres;
 
 export const POSTGRES_CONFIG = z

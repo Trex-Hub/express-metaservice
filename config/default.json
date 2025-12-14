@@ -6,7 +6,7 @@
   "timestampFormat": "YYYY-MM-DDTHH:mm:ss.SSSZ",
   "logLevel": "info",
   "isMicroservice": false,
-  "redisEnabled": true,
+  "redisEnabled": false,
   "redisUrl": "redis://localhost:6379/0",
   "postgresEnabled": false,
   "databaseUrl": "postgresql://postgres:postgres@localhost:5432/mydb",

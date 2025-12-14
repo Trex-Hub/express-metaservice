@@ -9,6 +9,8 @@ import { logger } from '@/utils/logger';
 import router from '@/routes';
 // MIDDLEWARES
 import loggingMiddleware from '@/middlewares/logging';
+// SHUTDOWN
+import { setupGracefulShutdown } from '@/utils/shutdown';
 
 const app = express();
 
@@ -33,7 +35,9 @@ if (getConfig('isMicroservice')) {
   app.use('/api/v1', router);
 }
 
-app.listen(getConfig('port'), () => {
-  logger.info(`Server is running on port ${getConfig('port')}`);
-  logger.info(`Server URL: http://localhost:${getConfig('port')}`);
-});
+setupGracefulShutdown(
+  app.listen(getConfig('port'), () => {
+    logger.info(`Server is running on port ${getConfig('port')}`);
+    logger.info(`Server URL: http://localhost:${getConfig('port')}`);
+  })
+);
