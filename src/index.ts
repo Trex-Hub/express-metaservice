@@ -11,6 +11,8 @@ import router from '@/routes';
 import loggingMiddleware from '@/middlewares/logging';
 // SHUTDOWN
 import { setupGracefulShutdown } from '@/utils/shutdown';
+// DOCUMENTATION
+import { specs, swaggerUi } from '@/adapters/documentation/swagger';
 
 const app = express();
 
@@ -34,6 +36,8 @@ if (getConfig('isMicroservice')) {
 } else {
   app.use('/api/v1', router);
 }
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 setupGracefulShutdown(
   app.listen(getConfig('port'), () => {
