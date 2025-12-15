@@ -5,10 +5,12 @@ import uploadController from '@/controllers/upload';
 import { busboyMiddleware } from '@/middlewares/busboy';
 // HELPERS
 import { uploadFile } from '@/utils/helpers';
+// TYPES
+import { UploadRequest, UploadResponse } from '@/types/route/upload/post';
 
 const uploadRouter: Router = Router();
 
-uploadRouter.post(
+uploadRouter.post<{}, UploadResponse, UploadRequest>(
   '/',
   busboyMiddleware({
     filePolicy: {
