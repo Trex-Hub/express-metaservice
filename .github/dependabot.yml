@@ -1,14 +1,26 @@
 version: 2
-
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: npm
+    ignore:
+      - update-types:
+          - 'version-update:semver-major'
+        dependency-name: '*'
+    directory: /
     schedule:
-      interval: "daily"
-
+      interval: weekly
+      day: sunday
+      time: '09:00'
+      timezone: Asia/Kolkata
+    groups:
+      production-security-updates:
+        applies-to: security-updates
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+    open-pull-requests-limit: 0
     assignees:
-      - "TreX-Hub"
-
+      - TreX-Hub
     labels:
-      - "dependencies"
-      - "changelog"
+      - dependencies
+      - changelog
