@@ -1,6 +1,8 @@
 // ADAPTERS
-import { shutdownPostgres } from './database/postgress';
-import { shutdownRedis } from './cache/redis';
+import { shutdownPostgres } from '@/adapters/database/postgress';
+import { shutdownRedis } from '@/adapters/cache/redis';
+import postgres from '@/adapters/database/postgress';
+import redis from '@/adapters/cache/redis';
 
 /**
  * Shuts down all adapters gracefully
@@ -9,4 +11,8 @@ import { shutdownRedis } from './cache/redis';
  */
 export const shutdownAdapters = async (): Promise<void> => {
   await Promise.allSettled([shutdownPostgres(), shutdownRedis()]);
+};
+
+export const initializeAdapters = async (): Promise<void> => {
+  await Promise.allSettled([postgres(), redis()]);
 };

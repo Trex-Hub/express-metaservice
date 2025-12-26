@@ -11,6 +11,8 @@ import router from '@/routes';
 import loggingMiddleware from '@/middlewares/logging';
 // SHUTDOWN
 import { setupGracefulShutdown } from '@/utils/shutdown';
+// ADAPTERS
+import { initializeAdapters } from '@/adapters';
 // DOCUMENTATION
 import { specs, swaggerUi } from '@/adapters/documentation/swagger';
 
@@ -40,8 +42,9 @@ if (getConfig('isMicroservice')) {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 setupGracefulShutdown(
-  app.listen(getConfig('port'), () => {
+  app.listen(getConfig('port'), async () => {
     logger.info(`Server is running on port ${getConfig('port')}`);
     logger.info(`Server URL: http://localhost:${getConfig('port')}`);
+    await initializeAdapters();
   })
 );

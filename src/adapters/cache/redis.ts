@@ -13,6 +13,7 @@ const redisClient = new Redis(REDIS_URL);
 
 const redis = () => {
   if (getConfig<boolean>('redisEnabled')) {
+    logger.info('Redis connection pool created');
     return redisClient;
   }
   logger.warn('Redis is not enabled');

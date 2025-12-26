@@ -11,10 +11,14 @@ import { logger } from '@/utils/logger';
 
 const postgresClient = new Pool({
   connectionString: DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 const postgres = () => {
   if (getConfig<boolean>('postgresEnabled')) {
+    logger.info('PostgreSQL connection pool created');
     return postgresClient;
   }
   logger.warn('PostgreSQL is not enabled');
