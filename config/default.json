@@ -9,7 +9,7 @@
   "redisEnabled": true,
   "redisUrl": "redis://localhost:6379/0",
   "postgresEnabled": true,
-  "databaseUrl": "postgresql://postgres:postgres@localhost:5432/mydb",
+  "postgresUrl": "postgresql://postgres:postgres@localhost:5432/mydb",
   "gcpStorageEnabled": false,
   "gcpStorageProjectId": "",
   "gcpStorageBucketName": ""

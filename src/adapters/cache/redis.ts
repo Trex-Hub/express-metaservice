@@ -20,6 +20,25 @@ const redis = () => {
   return undefined;
 };
 
+const verifyConnection = async (): Promise<void> => {
+  try {
+    const pong = await redisClient.ping();
+    if (pong !== 'PONG')
+      throw new Error(`Unexpected Redis PING response: ${pong}`);
+    logger.info('Redis connection verified');
+  } catch (error) {
+    logger.error('Redis connection verification failed:', error);
+    throw error;
+  }
+};
+
+/** Initializes and verifies the Redis connection when enabled. */
+export const initRedis = async (): Promise<void> => {
+  if (getConfig<boolean>('redisEnabled')) {
+    await verifyConnection();
+  }
+};
+
 export const shutdownRedis = async (): Promise<void> => {
   try {
     const redisClient = redis();
